@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  soap-db:
+    container_name: soap-db
+    image: postgres:12
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: soap-db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    network_mode: bridge
