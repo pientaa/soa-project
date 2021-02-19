@@ -1,0 +1,33 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+    <xs:element name="getPaymentRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="transactionId" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getPaymentResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Payment" type="payment"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="payment">
+        <xs:sequence>
+            <xs:element name="transactionId" type="xs:string"/>
+            <xs:element name="amount" type="xs:float"/>
+            <xs:element name="status" type="paymentStatus"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="paymentStatus">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="ISSUED"/>
+            <xs:enumeration value="SETTLED"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>
