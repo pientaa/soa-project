@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    username: postgres
+    password: postgres
+    url: jdbc:postgresql://localhost:5432/soap-db
+    sql-script-encoding: UTF-8
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
