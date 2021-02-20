@@ -16,6 +16,18 @@ class PaymentEntity(
     val amount: BigDecimal,
     var status: PaymentEntityStatus
 ) {
+    fun settlePayment() = this.apply {
+        status = PaymentEntityStatus.SETTLED
+    }
+
+    fun toPayment(): Payment =
+        Payment().apply {
+            transactionId = this@PaymentEntity.transactionId
+            userId = this@PaymentEntity.userId
+            amount = this@PaymentEntity.amount
+            status = this@PaymentEntity.status.toPaymentStatus()
+        }
+
     constructor(payment: Payment) : this(
         userId = payment.userId,
         amount = payment.amount,
@@ -26,6 +38,11 @@ class PaymentEntity(
         ISSUED,
         SETTLED
     }
+}
+
+fun PaymentEntityStatus.toPaymentStatus(): PaymentStatus = when (this) {
+    PaymentEntityStatus.ISSUED -> PaymentStatus.ISSUED
+    PaymentEntityStatus.SETTLED -> PaymentStatus.SETTLED
 }
 
 fun PaymentStatus.toPaymentEntityStatus(): PaymentEntityStatus = when (this) {
