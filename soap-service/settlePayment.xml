@@ -1,0 +1,11 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                  xmlns:gs="http://pientaa.com">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <gs:settlePaymentRequest>
+            <gs:SettlePayment>
+                <gs:transactionId>e03f9776-942f-4888-99b1-c3b69eaf9201</gs:transactionId>
+            </gs:SettlePayment>
+        </gs:settlePaymentRequest>
+    </soapenv:Body>
+</soapenv:Envelope>

@@ -18,9 +18,9 @@ class PaymentService(
     fun issuePayment(issuePaymentRequest: IssuePaymentRequest) =
         paymentRepository.save(PaymentEntity(issuePaymentRequest.issuePayment)).toPayment()
 
-    fun settlePayment(transactionId: String) {
+    fun settlePayment(transactionId: String): Payment? =
         paymentRepository.findByTransactionId(transactionId)
             ?.settlePayment()
             ?.let(paymentRepository::save)
-    }
+            ?.toPayment()
 }
