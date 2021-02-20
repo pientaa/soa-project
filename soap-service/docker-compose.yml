@@ -10,4 +10,23 @@ services:
       POSTGRES_DB: soap-db
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-    network_mode: bridge
+    networks:
+      - soa-network
+
+  soap-service:
+    container_name: soap-service
+    image: soap-service-0.0.1
+    depends_on:
+      - soap-db
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    restart: on-failure
+    networks:
+      - soa-network
+
+networks:
+  soa-network:
+    driver: bridge
