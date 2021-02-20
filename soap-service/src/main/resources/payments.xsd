@@ -1,9 +1,12 @@
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://pientaa.com"
+           targetNamespace="http://pientaa.com"
+           elementFormDefault="qualified">
 
     <xs:element name="issuePaymentRequest">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="IssuePayment" type="issuePayment"/>
+                <xs:element name="IssuePayment" type="tns:issuePayment"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -11,7 +14,7 @@
     <xs:element name="issuePaymentResponse">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="Payment" type="payment"/>
+                <xs:element name="Payment" type="tns:payment"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -19,7 +22,7 @@
     <xs:element name="settlePaymentRequest">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="SettlePayment" type="settlePayment"/>
+                <xs:element name="SettlePayment" type="tns:settlePayment"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -27,7 +30,7 @@
     <xs:element name="settlePaymentResponse">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="Payment" type="payment"/>
+                <xs:element name="Payment" type="tns:payment"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -43,7 +46,7 @@
     <xs:element name="getUserPaymentsResponse">
         <xs:complexType>
             <xs:sequence minOccurs="0" maxOccurs="unbounded">
-                <xs:element name="Payment" type="payment"/>
+                <xs:element name="Payment" type="tns:payment"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -66,7 +69,7 @@
             <xs:element name="transactionId" type="xs:string"/>
             <xs:element name="userId" type="xs:string"/>
             <xs:element name="amount" type="xs:decimal"/>
-            <xs:element name="status" type="paymentStatus"/>
+            <xs:element name="status" type="tns:paymentStatus"/>
         </xs:sequence>
     </xs:complexType>
 

@@ -1,8 +1,10 @@
 package com.pientaa.soapservice.model
 
+import com.pientaa.IssuePayment
+import com.pientaa.Payment
+import com.pientaa.PaymentStatus
 import com.pientaa.soapservice.model.PaymentEntity.PaymentEntityStatus
-import generated.Payment
-import generated.PaymentStatus
+import com.pientaa.soapservice.model.PaymentEntity.PaymentEntityStatus.*
 import java.math.BigDecimal
 import java.util.*
 import javax.persistence.Entity
@@ -12,12 +14,12 @@ import javax.persistence.Id
 class PaymentEntity(
     @Id
     val transactionId: String = UUID.randomUUID().toString(),
-    val userId: String,
-    val amount: BigDecimal,
-    var status: PaymentEntityStatus
+    val userId: String = "nonInitialized",
+    val amount: BigDecimal = BigDecimal(0),
+    var status: PaymentEntityStatus = ERROR
 ) {
     fun settlePayment() = this.apply {
-        status = PaymentEntityStatus.SETTLED
+        status = SETTLED
     }
 
     fun toPayment(): Payment =
@@ -34,18 +36,26 @@ class PaymentEntity(
         status = payment.status.toPaymentEntityStatus()
     )
 
+    constructor(issuePayment: IssuePayment) : this(
+        userId = issuePayment.userId,
+        amount = issuePayment.amount,
+        status = ISSUED
+    )
+
     enum class PaymentEntityStatus {
+        ERROR,
         ISSUED,
         SETTLED
     }
 }
 
 fun PaymentEntityStatus.toPaymentStatus(): PaymentStatus = when (this) {
-    PaymentEntityStatus.ISSUED -> PaymentStatus.ISSUED
-    PaymentEntityStatus.SETTLED -> PaymentStatus.SETTLED
+    ISSUED -> PaymentStatus.ISSUED
+    SETTLED -> PaymentStatus.SETTLED
+    else -> throw IllegalStateException("ERROR")
 }
 
 fun PaymentStatus.toPaymentEntityStatus(): PaymentEntityStatus = when (this) {
-    PaymentStatus.ISSUED -> PaymentEntityStatus.ISSUED
-    PaymentStatus.SETTLED -> PaymentEntityStatus.SETTLED
+    PaymentStatus.ISSUED -> ISSUED
+    PaymentStatus.SETTLED -> SETTLED
 }
