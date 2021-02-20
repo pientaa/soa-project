@@ -34,8 +34,9 @@
 
     <xs:complexType name="payment">
         <xs:sequence>
-            <xs:element name="transactionId" type="xs:string"/>
-            <xs:element name="amount" type="xs:float"/>
+            <xs:element name="transactionId" type="xs:string" minOccurs="0"/>
+            <xs:element name="userId" type="xs:string"/>
+            <xs:element name="amount" type="xs:decimal"/>
             <xs:element name="status" type="paymentStatus"/>
         </xs:sequence>
     </xs:complexType>
