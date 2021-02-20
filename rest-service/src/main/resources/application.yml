@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    username: postgres
+    password: postgres
+    url: jdbc:postgresql://rest-db:5432/rest-db
+    sql-script-encoding: UTF-8
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: false
+
+server:
+  port: 8082

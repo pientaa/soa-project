@@ -11,9 +11,24 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     networks:
-      - soapservice_soa-network
+      - rest-network
 
+  rest-service:
+    container_name: rest-service
+    image: rest-service-0.0.1
+    depends_on:
+      - rest-db
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8082:8082"
+    networks:
+      - rest-network
+      - soapservice_soa-network
 
 networks:
   soapservice_soa-network:
     external: true
+  rest-network:
+    driver: bridge

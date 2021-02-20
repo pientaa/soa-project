@@ -11,7 +11,7 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     networks:
-      - soa-network
+      - soap-network
 
   soap-service:
     container_name: soap-service
@@ -25,8 +25,11 @@ services:
       - "8081:8081"
     restart: on-failure
     networks:
+      - soap-network
       - soa-network
 
 networks:
   soa-network:
+    driver: bridge
+  soap-network:
     driver: bridge

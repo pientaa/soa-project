@@ -37,7 +37,7 @@ echo "Creating gateway container ..."
 
 docker-compose up -d
 
-docker logs -f gateway
+docker logs -f rest-service
 
 
 
