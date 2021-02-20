@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  rest-db:
+    container_name: rest-db
+    image: postgres:12
+    ports:
+      - "5434:5432"
+    environment:
+      POSTGRES_DB: rest-db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    networks:
+      - soapservice_soa-network
+
+
+networks:
+  soapservice_soa-network:
+    external: true

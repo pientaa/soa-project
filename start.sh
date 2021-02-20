@@ -18,6 +18,14 @@ sleep 5
 
 cd ..
 
+echo "Creating rest-service container ..."
+
+cd rest-service
+docker-compose up -d
+cd ..
+
+sleep 5
+
 echo "Building actual gateway ..."
 
 cd gateway
