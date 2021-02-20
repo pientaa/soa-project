@@ -9,3 +9,6 @@ spring:
       ddl-auto: create-drop
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     show-sql: false
+
+server:
+  port: 8081
