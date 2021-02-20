@@ -8,6 +8,8 @@ import com.pientaa.soapservice.model.PaymentEntity.PaymentEntityStatus.*
 import java.math.BigDecimal
 import java.util.*
 import javax.persistence.Entity
+import javax.persistence.EnumType
+import javax.persistence.Enumerated
 import javax.persistence.Id
 
 @Entity
@@ -16,6 +18,7 @@ class PaymentEntity(
     val transactionId: String = UUID.randomUUID().toString(),
     val userId: String = "nonInitialized",
     val amount: BigDecimal = BigDecimal(0),
+    @Enumerated(EnumType.STRING)
     var status: PaymentEntityStatus = ERROR
 ) {
     fun settlePayment() = this.apply {
