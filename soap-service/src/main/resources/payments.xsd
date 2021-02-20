@@ -3,12 +3,28 @@
     <xs:element name="issuePaymentRequest">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="Payment" type="payment"/>
+                <xs:element name="IssuePayment" type="issuePayment"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
 
     <xs:element name="issuePaymentResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Payment" type="payment"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="settlePaymentRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="SettlePayment" type="settlePayment"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="settlePaymentResponse">
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="Payment" type="payment"/>
@@ -32,9 +48,22 @@
         </xs:complexType>
     </xs:element>
 
-    <xs:complexType name="payment">
+    <xs:complexType name="issuePayment">
+        <xs:sequence>
+            <xs:element name="userId" type="xs:string"/>
+            <xs:element name="amount" type="xs:decimal"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="settlePayment">
         <xs:sequence>
             <xs:element name="transactionId" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="payment">
+        <xs:sequence>
+            <xs:element name="transactionId" type="xs:string"/>
             <xs:element name="userId" type="xs:string"/>
             <xs:element name="amount" type="xs:decimal"/>
             <xs:element name="status" type="paymentStatus"/>
