@@ -1,6 +1,7 @@
 package com.pientaa.soapservice
 
 import com.pientaa.soapservice.model.PaymentEntity
+import com.pientaa.soapservice.model.PaymentRepository
 import generated.Payment
 import org.springframework.stereotype.Service
 

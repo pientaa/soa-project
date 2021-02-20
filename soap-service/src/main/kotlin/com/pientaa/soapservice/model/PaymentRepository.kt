@@ -1,6 +1,5 @@
-package com.pientaa.soapservice
+package com.pientaa.soapservice.model
 
-import com.pientaa.soapservice.model.PaymentEntity
 import org.springframework.data.repository.Repository
 
 interface PaymentRepository : Repository<PaymentEntity, String> {
