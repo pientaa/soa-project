@@ -1,6 +1,9 @@
 package com.pientaa.soapservice
 
-import generated.Payment
+import com.pientaa.soapservice.model.PaymentEntity
 import org.springframework.data.repository.Repository
 
-interface PaymentRepository : Repository<Payment, String>
+interface PaymentRepository : Repository<PaymentEntity, String> {
+    fun save(paymentEntity: PaymentEntity): PaymentEntity
+    fun findAllByUserId(userId: String): List<PaymentEntity>
+}
