@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  gateway:
+    container_name: gateway
+    image: gateway-0.0.1
+    build:
+      context: ./gateway
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    networks:
+      - soapservice_soa-network
+
+networks:
+  soapservice_soa-network:
+    external: true

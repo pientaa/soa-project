@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 
-@RestController("/payments")
+@RestController
 class PaymentController(
     private val paymentServiceClient: PaymentServiceClient
 ) {
