@@ -3,9 +3,7 @@
     <soapenv:Header/>
     <soapenv:Body>
         <gs:settlePaymentRequest>
-            <gs:SettlePayment>
-                <gs:transactionId>e03f9776-942f-4888-99b1-c3b69eaf9201</gs:transactionId>
-            </gs:SettlePayment>
+            <gs:transactionId>b22fadd5-e6d9-415e-b275-af43f72a97cf</gs:transactionId>
         </gs:settlePaymentRequest>
     </soapenv:Body>
 </soapenv:Envelope>

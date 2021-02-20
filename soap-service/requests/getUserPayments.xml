@@ -1,0 +1,9 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                  xmlns:gs="http://pientaa.com">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <gs:getUserPaymentsRequest>
+            <gs:userId>SomeRandomUserId</gs:userId>
+        </gs:getUserPaymentsRequest>
+    </soapenv:Body>
+</soapenv:Envelope>

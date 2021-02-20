@@ -1,5 +1,7 @@
 package com.pientaa.soapservice
 
+import com.pientaa.GetUserPaymentsRequest
+import com.pientaa.GetUserPaymentsResponse
 import com.pientaa.IssuePaymentRequest
 import com.pientaa.IssuePaymentResponse
 import com.pientaa.SettlePaymentRequest
@@ -21,7 +23,7 @@ class CountryEndpoint(private val paymentService: PaymentService) {
     fun issuePayment(@RequestPayload request: IssuePaymentRequest): IssuePaymentResponse {
         return IssuePaymentResponse()
             .apply {
-                payment = paymentService.issuePayment(request)
+                payment = paymentService.issuePayment(request.issuePayment)
             }
     }
 
@@ -30,7 +32,16 @@ class CountryEndpoint(private val paymentService: PaymentService) {
     fun settlePayment(@RequestPayload request: SettlePaymentRequest): SettlePaymentResponse {
         return SettlePaymentResponse()
             .apply {
-                payment = paymentService.settlePayment(request.settlePayment.transactionId)
+                payment = paymentService.settlePayment(request.transactionId)
+            }
+    }
+
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getUserPaymentsRequest")
+    @ResponsePayload
+    fun getUserPayments(@RequestPayload request: GetUserPaymentsRequest): GetUserPaymentsResponse {
+        return GetUserPaymentsResponse()
+            .apply {
+                payments.addAll(paymentService.getUsersPayments(request.userId))
             }
     }
 }

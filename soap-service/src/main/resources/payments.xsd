@@ -22,7 +22,7 @@
     <xs:element name="settlePaymentRequest">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="SettlePayment" type="tns:settlePayment"/>
+                <xs:element name="transactionId" type="xs:string"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -46,7 +46,7 @@
     <xs:element name="getUserPaymentsResponse">
         <xs:complexType>
             <xs:sequence minOccurs="0" maxOccurs="unbounded">
-                <xs:element name="Payment" type="tns:payment"/>
+                <xs:element name="Payments" type="tns:payment"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -55,12 +55,6 @@
         <xs:sequence>
             <xs:element name="userId" type="xs:string"/>
             <xs:element name="amount" type="xs:decimal"/>
-        </xs:sequence>
-    </xs:complexType>
-
-    <xs:complexType name="settlePayment">
-        <xs:sequence>
-            <xs:element name="transactionId" type="xs:string" minOccurs="0"/>
         </xs:sequence>
     </xs:complexType>
 

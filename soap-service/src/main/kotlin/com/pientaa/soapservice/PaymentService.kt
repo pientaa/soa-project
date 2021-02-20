@@ -1,6 +1,6 @@
 package com.pientaa.soapservice
 
-import com.pientaa.IssuePaymentRequest
+import com.pientaa.IssuePayment
 import com.pientaa.Payment
 import com.pientaa.soapservice.model.PaymentEntity
 import com.pientaa.soapservice.model.PaymentRepository
@@ -15,8 +15,8 @@ class PaymentService(
         paymentRepository.findAllByUserId(userId)
             .map { it.toPayment() }
 
-    fun issuePayment(issuePaymentRequest: IssuePaymentRequest) =
-        paymentRepository.save(PaymentEntity(issuePaymentRequest.issuePayment)).toPayment()
+    fun issuePayment(issuePayment: IssuePayment) =
+        paymentRepository.save(PaymentEntity(issuePayment)).toPayment()
 
     fun settlePayment(transactionId: String): Payment? =
         paymentRepository.findByTransactionId(transactionId)
