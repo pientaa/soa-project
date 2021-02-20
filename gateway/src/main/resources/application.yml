@@ -1,0 +1,4 @@
+services:
+  payment:
+    wsdl:
+      url: http://soap-service:8081/ws/payments
