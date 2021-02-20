@@ -1,12 +1,12 @@
 # Payment Web Service (SOAP)
 
-In order to test `issuePayment` run following:
+In order to test `issuePayment` go into `sampleRequests` and run following:
 
 ```bash
 curl --header "content-type: text/xml" -d @issuePayment.xml http://localhost:8080/ws
 ```
 
-In order to test `settlePayment` run following:
+In order to test `settlePayment` go into `sampleRequests` and run following:
 
 ```bash
 curl --header "content-type: text/xml" -d @settlePayment.xml http://localhost:8080/ws
