@@ -1,5 +1,5 @@
 package com.pientaa.restservice.model
 
-import org.springframework.data.repository.Repository
+import org.springframework.data.jpa.repository.JpaRepository
 
-interface UserRepository : Repository<UserEntity, String>
+interface UserRepository : JpaRepository<UserEntity, String>
