@@ -2,3 +2,6 @@ services:
   payment:
     wsdl:
       url: http://localhost:8081/ws/payments
+  user:
+    url:
+      http://localhost:8082

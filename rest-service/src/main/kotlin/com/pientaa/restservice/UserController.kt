@@ -10,17 +10,17 @@ import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 
-@RestController
+@RestController("userController")
 class UserController(
     private val userService: UserService
 ) {
-    @GetMapping("/users")
+    @GetMapping
     fun getAllUsers() = userService.getAll()
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/users")
+    @PostMapping
     fun createUser(@RequestBody userDTO: UserDTO) = userService.createUser(userDTO)
 
-    @DeleteMapping("/users")
+    @DeleteMapping
     fun deleteUser(@RequestParam userId: String) = userService.deleteUser(userId)
 }

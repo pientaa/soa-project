@@ -1,6 +1,5 @@
-package com.pientaa.gateway.config
+package com.pientaa.gateway
 
-import com.pientaa.gateway.PaymentServiceClient
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.oxm.jaxb.Jaxb2Marshaller
