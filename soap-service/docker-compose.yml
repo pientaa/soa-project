@@ -28,6 +28,19 @@ services:
       - soap-network
       - soa-network
 
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:3.8.9-management
+    volumes:
+      - ./rabbitconfig/data:/var/lib/rabbitmq:rw
+      - ./rabbitconfig/definitions.json:/etc/rabbitmq/definitions.json:ro
+      - ./rabbitconfig/rabbitmq.config:/etc/rabbitmq/rabbitmq.config:ro
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - soa-network
+
 networks:
   soa-network:
     driver: bridge
