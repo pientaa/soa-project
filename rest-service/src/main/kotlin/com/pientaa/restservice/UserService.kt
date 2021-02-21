@@ -2,6 +2,7 @@ package com.pientaa.restservice
 
 import com.pientaa.restservice.dto.UserDTO
 import com.pientaa.restservice.infrastructure.EventPublisher
+import com.pientaa.restservice.infrastructure.RollbackUserDeleted
 import com.pientaa.restservice.infrastructure.UserDeleted
 import com.pientaa.restservice.model.UserEntity
 import com.pientaa.restservice.model.UserRepository
@@ -23,10 +24,20 @@ class UserService(
     fun deleteUser(userId: String) {
         userRepository.findByIdOrNull(userId)
             ?.let { user ->
-                userRepository.deleteById(user.id)
+                userRepository.deleteById(user.username)
                     .also {
-                        eventPublisher.publish(UserDeleted(user.id, user.firstName, user.lastName))
+                        eventPublisher.publish(UserDeleted(user.username, user.firstName, user.lastName))
                     }
             }
+    }
+
+    fun handle(event: RollbackUserDeleted) {
+        userRepository.save(
+            UserEntity(
+                username = event.username,
+                firstName = event.firstName,
+                lastName = event.lastName
+            )
+        )
     }
 }

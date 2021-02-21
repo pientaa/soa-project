@@ -1,7 +1,7 @@
 package com.pientaa.soapservice.infrastructure
 
 data class UserDeleted(
-    val userId: String,
+    val username: String,
     val firstName: String,
     val lastName: String
 )

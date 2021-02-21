@@ -30,9 +30,9 @@ class PaymentService(
             ?.toPayment()
 
     fun handle(event: UserDeleted) {
-        if (paymentRepository.findAllByUserId(event.userId)
+        if (paymentRepository.findAllByUserId(event.username)
                 .any { it.status == ISSUED })
             eventPublisher.publish(RollbackUserDeleted(event))
-        else paymentRepository.deleteAllByUserId(event.userId)
+        else paymentRepository.deleteAllByUserId(event.username)
     }
 }
