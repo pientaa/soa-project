@@ -5,6 +5,7 @@ import com.pientaa.restservice.infrastructure.EventPublisher
 import com.pientaa.restservice.infrastructure.UserDeleted
 import com.pientaa.restservice.model.UserEntity
 import com.pientaa.restservice.model.UserRepository
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 
 @Service
@@ -20,9 +21,12 @@ class UserService(
     }
 
     fun deleteUser(userId: String) {
-        userRepository.deleteById(userId)
-            .also {
-                eventPublisher.publish(UserDeleted(userId))
+        userRepository.findByIdOrNull(userId)
+            ?.let { user ->
+                userRepository.deleteById(user.id)
+                    .also {
+                        eventPublisher.publish(UserDeleted(user.id, user.firstName, user.lastName))
+                    }
             }
     }
 }

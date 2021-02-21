@@ -1,4 +1,4 @@
-package com.pientaa.restservice.infrastructure
+package com.pientaa.soapservice.infrastructure
 
 data class UserDeleted(
     val userId: String,
