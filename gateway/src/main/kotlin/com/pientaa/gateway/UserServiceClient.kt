@@ -1,6 +1,7 @@
 package com.pientaa.gateway
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import com.fasterxml.jackson.module.kotlin.readValue
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import com.pientaa.gateway.dto.UserDTO
 import okhttp3.HttpUrl
@@ -42,7 +43,7 @@ class UserServiceClient {
 
         client.newCall(request).execute().use { response ->
             log.info("Create user { ${createUserDTO.firstName}, ${createUserDTO.lastName} } request")
-            log.info("Client response: ${response.code}, ${response.message}")
+            log.info("Client response: ${response.code}, ${response.body?.string()}")
         }
     }
 
@@ -60,7 +61,21 @@ class UserServiceClient {
 
         client.newCall(request).execute().use { response ->
             log.info("Delete user { $userId } request")
-            log.info("Client response: ${response.code}, ${response.message}")
+            log.info("Client response: ${response.code}, ${response.body?.string()}")
+        }
+    }
+
+    fun getAllUsers(): List<UserDTO> {
+        val request: Request = Request.Builder()
+            .url(userServiceUrl)
+            .get()
+            .build()
+
+        client.newCall(request).execute().use { response ->
+            val body = response.body?.string()
+            log.info("Get all users request")
+            log.info("Client response: ${response.code}, $body")
+            return body?.let { mapper.readValue<List<UserDTO>>(it) } ?: emptyList()
         }
     }
 }

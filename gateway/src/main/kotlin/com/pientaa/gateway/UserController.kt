@@ -17,6 +17,9 @@ class UserController(
     private val userServiceClient: UserServiceClient
 ) {
 
+    @GetMapping
+    fun getAllUsers() = userServiceClient.getAllUsers()
+
     @DeleteMapping
     fun deleteUser(@RequestParam userId: String) = userServiceClient.deleteUser(userId)
 
